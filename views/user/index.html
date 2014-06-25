@@ -1,0 +1,372 @@
+<div class="container">
+            <div class="row">
+            
+<%- partial('sidebar') %>
+
+<div role="main" class="span single-column ">
+    <div class="basic-info">
+    	 
+        <a href="/user/<%= user.name %>"
+        data-action="photo-click">
+            <img class="avatar" src="<%= user.avatar_url %>"  title="<%= user.name %>"
+            alt="<%= user.name %>" data-pinit="registered">
+        </a>
+       
+        <h4>
+            <span class="user-name">
+            	
+                <%if(user.nickname){%>
+                <%= user.nickname %>
+                <%}else{%>
+                <%= user.name %>
+                <%}%>
+                
+            </span>
+        </h4>
+        
+        <h5>
+            <i class="icon-nextdoorv2 icon-m-pin">
+            </i>
+            和家园，<% if (user.village==1) { %>
+					御园
+				<% } else if (user.village==2) { %>
+				 紫园
+                 <% } else if (user.village==3) { %>
+				  翰园
+                 <% } else if (user.village==4) { %>
+				  景园
+                  <% } else if (user.village==5) { %>
+				  琉园
+                  <% } else if (user.village==6) { %>
+				  懿园
+				<% } %>
+               ，<%= user.building %>幢
+        </h5>
+        <!--这边换成是关注的人-->
+        <p class="profile-stats">
+            <span class="invitation-label">
+                <a href="/user/<%= user.name %>/following">
+                    <i class="glyphicon-leaf">
+                    </i>
+                    <%= user.following_count %>  关注
+                </a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/user/<%= user.name %>/follower">
+                    <i class="glyphicon-leaf">
+                    </i>
+                    <%= user.follower_count %> 粉丝
+                </a>
+                
+                
+            </span>
+        </p>
+        
+        
+        <div class="actions">
+       
+        <% if (locals.current_user && current_user.is_admin) { %>
+				
+        <% if (!user.is_block) { %>
+          <button class='btn' id='set_block_btn' action='set_block'>屏蔽用户并删其所有帖</button>
+        <% } else { %>
+          <button class='btn' id='set_block_btn' action='cancel_block'>取消屏蔽用户</button>
+        <% } %>
+				
+				<% if (!user.active) { %>
+				<a class='btn' href="/active_account?key=<%- locals.token %>&name=<%= user.name %>" target="_blank">激活账号</a>
+				<% } %>
+			<% } %>
+            
+         
+        <% if (locals.current_user && current_user._id != user._id) { %>
+				<% if (!locals.relation) { %>
+				<button class='btn btn-success follow_btn' action='follow'>加入关注</button>
+				<% } else { %>
+				<button class='btn follow_btn' action='un_follow'>取消关注</button>
+				<% } %>
+			<% }else{%>
+            		<a class='btn follow_btn' href="/setting">编辑个人信息</a>
+            <% } %>
+        </div>
+        
+    </div>
+   
+    
+    <ul role="menubar" class="nav nav-pills">
+        <li role="menuitem" class="active">
+            <a href="javascript:void(0);">
+                <i class="icon-nextdoorv2 icon-m-directory">
+                </i>
+                个人主页
+            </a>
+        </li>
+    </ul>
+    
+    <!--关于影视的隐私，自己要注意保护-->
+    <div class="more-info">
+        <h4>
+            基本信息：
+        </h4>
+        <dl class="dl-horizontal">
+            <dt>
+                 昵称：
+            </dt>
+            <dd>
+            <% if (!user.nickname) { %>
+            		用户未尚未设置
+            <%}else{%>
+                 <%=user.nickname %>
+             <%}%>
+           </dd>
+            
+            <dt>
+                 家乡：
+            </dt>
+            
+            <dd>
+            <% if (!user.hometown) { %>
+            		用户未尚未设置
+            <%}else{%>
+                <%= user.hometown %>
+             <%}%>
+                   
+            </dd>
+            <dt>
+                职业
+            </dt>
+            <dd>
+             <% if (!user.job) { %>
+            		用户未尚未设置
+            <%}else{%>
+                <%= user.job %>
+             <%}%>
+                
+            </dd>
+            <dt>
+                兴趣爱好
+            </dt>
+            <dd>
+                   <% if (!user.interests) { %>
+                          用户未尚未设置
+                  <%}else{%>
+                      <%= user.interests %>
+                   <%}%>
+                
+            </dd>
+            <dt>
+                个人网站
+            </dt>
+            <dd>
+            	<% if (!user.url) { %>
+                          用户未尚未设置
+                  <%}else{%>
+                      <%= user.url %>
+                   <%}%>
+            </dd>
+            <dt>
+                个性签名
+            </dt>
+            <dd>
+            	<% if (!user.signature) { %>
+                          用户未尚未设置
+                  <%}else{%>
+                      <%= user.signature %>
+                   <%}%>
+                   
+            </dd>
+            <dt>
+            	
+                个人简介
+            </dt>
+            <dd>
+            <% if (!user.profile) { %>
+                          用户未尚未设置
+                  <%}else{%>
+                      <%= user.profile %>
+                   <%}%>
+                   
+            </dd>
+           
+            
+        </dl>
+    </div>
+    
+    <div class="more-info">
+        <h4>
+            联系信息：
+        </h4>
+        <dl class="dl-horizontal">
+            <dt>
+                 Email：
+            </dt>
+            <dd>
+                <a href="mailto:<%= user.email %>"><%= user.email %></a>
+            </dd>
+            <dt>
+                 电话：
+            </dt>
+            <dd>
+             <% if (!user.phone) { %>
+                          用户未尚未设置
+                  <%}else{%>
+                      <%= user.phone %>
+                   <%}%>
+                   
+            </dd>
+            <dt>
+                QQ:
+            </dt>
+            <dd>
+            <% if (!user.qq) { %>
+                          用户未尚未设置
+                  <%}else{%>
+                      <%= user.qq %>
+                   <%}%>
+            </dd>
+             <dt>
+                微博
+            </dt>
+            <dd>
+             <% if (!user.weibo) { %>
+                          用户未尚未设置
+                  <%}else{%>
+                      <%= user.weibo %>
+                   <%}%>
+              
+            </dd>
+            
+        </dl>
+    </div>
+    
+    
+    <div class="more-info">
+    </div>
+    <div class="more-info">
+        <h4>
+            家庭住址
+        </h4>
+        <dl class="dl-horizontal">
+            <dt>
+                小区：
+            </dt>
+            <dd>
+                和家园
+            </dd>
+            <dt>
+                园区：
+            </dt>
+            <dd>
+             	<% if (user.village==1) { %>
+					御园
+				<% } else if (user.village==2) { %>
+				 紫园
+                 <% } else if (user.village==3) { %>
+				  翰园
+                 <% } else if (user.village==4) { %>
+				  景园
+                  <% } else if (user.village==5) { %>
+				  琉园
+                  <% } else if (user.village==6) { %>
+				  懿园
+				<% } %>
+            </dd>
+            <dt>
+                几幢：
+            </dt>
+            <dd>
+                 <%= user.building %>幢
+            </dd>
+            <dt>
+                单元：
+            </dt>
+            <dd>
+                <%= user.atunit %>单元
+            </dd>
+            
+            
+        </dl>
+    </div>
+    
+</div>
+</div>
+        </div>
+
+<% if (locals.current_user) { %>
+<script>
+	$(document).ready(function () {
+		$('#set_star_btn').click(function () {
+			var $me = $(this);
+			var action = $me.attr('action');
+			var params = {
+				user_id: '<%= user._id %>',
+				_csrf: '<%- csrf %>'
+			};
+			$.post('/user/' + action, params, function (data) {
+				if (data.status === 'success') {
+					if (action === 'set_star') {
+						$me.html('取消达人');
+						$me.attr('action','cancel_star');
+					} else {
+						$me.html('设为达人');
+						$me.attr('action','set_star');
+					}
+				}
+			}, 'json');
+		});
+	
+    $('#set_block_btn').click(function () {
+      var $me = $(this);
+      var action = $me.attr('action');
+      var params = {
+        _csrf: '<%- csrf %>',
+        action: action
+      };
+      if (action === 'set_block' && !confirm('确定要屏蔽该用户吗？此操作不可逆且会删除该用户的所有主题和回复！')) {
+        return;
+      }
+      $.post('/user/<%- user.name %>/block', params, function (data) {
+        if (data.status === 'success') {
+          if (action === 'set_block') {
+            $me.html('取消屏蔽用户');
+            $me.attr('action', 'cancel_block');
+          } else if (action === 'cancel_block') {
+            $me.html('屏蔽用户并删其所有帖');
+            $me.attr('action', 'set_block');
+          }
+        }
+      }, 'json');
+    })
+	});
+</script>
+<% } %>
+<!--加入关注的js内容信息-->
+
+<% if (locals.current_user) { %>
+<script>
+	$(document).ready(function () {
+		$('.follow_btn').click(function () {
+			var $me = $(this);
+			var action = $me.attr('action');
+			var params = {
+				follow_id: '<%= user._id %>',
+				_csrf: '<%- csrf %>'
+			};
+			$.post('/user/' + action, params, function (data) {
+				if (data.status === 'success') {
+					var $btns = $('.follow_btn');
+					if (action === 'follow') {
+						$btns.html('取消关注');
+						$btns.attr('action','un_follow');
+					} else {
+						$btns.html('加入关注');
+						$btns.attr('action','follow');
+					}
+					$btns.toggleClass('btn-success');	
+				}	
+			}, 'json');	
+		});
+	});
+</script>
+<% } %>
+
+        

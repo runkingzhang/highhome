@@ -1,0 +1,39 @@
+{
+  "name": "club",
+  "version": "0.3.6",
+  "main": "app.js",
+  "private": true,
+  "customHost": [
+    "highhome.org",
+    "www.highhome.com"
+  ],
+  "dependencies": {
+    "express": "2.5.11",
+    "ejs": "0.8.4",
+    "eventproxy": "0.2.6",
+    "mongoose": "2.7.3",
+    "node-markdown": "0.1.0",
+    "validator": "0.3.7",
+    "ndir": "0.1.3",
+    "nodemailer": "0.3.43",
+    "data2xml": "0.8.0",
+    "utility": "0.0.x",
+    "marked-prettyprint": "0.2.8",
+    "xss": "~0.0.9",
+    "loader": "0.0.5",
+    "passport": "~0.1.17",
+    "passport-github": "~0.1.5"
+  },
+  "devDependencies": {
+    "supertest": "*",
+    "should": "*",
+    "mocha": "*",
+    "rewire": "*",
+    "jscover": "*",
+    "pedding": "*",
+    "mm": "*"
+  },
+  "scripts": {
+    "test": "make test"
+  }
+}

@@ -1,0 +1,419 @@
+<div class="container">
+            <div class="row">
+            
+<%- partial('sidebar') %>
+
+		<div role="main" class="span single-column ">
+    <div class="header">
+        <h4 class="section-title">
+            
+                	<% if (topic.tags.length > 0) { %>
+                    			
+                                        <span class='col_fade'>标签：</span> 
+                                        <%- partial('tag/tag_in_topic',{ collection: topic.tags, as: 'tag' }) %>
+                                        <% } else { %>
+                                        <span class='col_fade'>标签：无</span>  
+                                        <% } %> 
+                
+        </h4>
+    </div>
+    <hr>
+    <div id="nf_stories">
+        <div class="media" id="s_3861316" data-class="whole-story" data-nearby-post="false">
+            <div class="media-object">
+                <a data-class="linked-name" data-id="762" href="/user/<%=topic.author.name%>/topics">
+                                    <img class="avatar" src="<%= topic.author.avatar_url%>"  title="<%= topic.author.name %>"
+           					 alt="<%= topic.author.name %>">
+               </a>
+            </div>
+            
+            <div class="media-body" >
+                <div data-class="main-content-area">
+                    <h4 class="media-heading" id="a_3861316">
+                        <span class="subject">
+                           <a class='' href='/topic/<%= topic._id %>'>
+                               <%= topic.title %>
+                            </a>
+                        </span>
+                        <span class="timestamp" data-utc="2014-02-26T22:54:47">
+                              <%= topic.friendly_create_at %>
+                        </span>
+                    </h4>
+                    
+                    <h5 class="media-author">
+                        <span class="user-name">
+                            <a data-class="linked-name" data-id="762" href="/user/<%= topic.author.name %>">
+                               <%if(topic.author.nickname){%>
+                              <%= topic.author.nickname %>
+                              <%}else{%>
+                              <%= topic.author.name %>
+                              <%}%>
+                            </a>
+                        </span>
+                    </h5>
+                    <div class='clearfix'>
+                    <!--这边markdown会惊醒对应内容的转化。-->
+                    <p data-class="post-content" style="float:left; display:inline; width:120px; height:auto; padding:0;">
+                     <%if(topic.image){%>
+                    	<a href="<%=topic.image%>" class="media-thumbnail">
+                        
+        			<img src="<%=topic.image%>" alt="<%=topic.title%>" width="115" height="115" data-pinit="registered">
+      					</a>
+                        <%}%>
+      					<div class="topic-content" style="float:left; display:inline">
+                       <%- markdown(topic.content) %>
+                       </div>
+                       
+                    </p>
+                    </div>
+                 
+                   <div class="media-scope">
+                   		
+                                       	<% if (topic.tags.length > 0) { %>
+                                        <span class='col_fade'>标签：</span> 
+                                        <%- partial('tag/tag_in_topic',{ collection: topic.tags, as: 'tag' }) %>
+                                        <% } else { %>
+                                        <span class='col_fade'>标签：无</span>  
+                                        <% } %>
+                    </div>
+                    <div class="media-actions" id="bl_3861316">
+                                        <span>
+                                
+    
+       
+        <% if (locals.current_user) { %>
+          <% if (!topic.in_collection) { %>
+                    
+                       <a class="btn btn-mini"  id='collect_btn' action='collect'>
+                                                <span data-class="label" class="label1">
+                                                    收藏
+                                                </span>
+                                                <span data-class="count" class="count">
+                                                    <%= topic.collect_count%>
+                                                </span>
+                    </a>
+                                            
+          <% } else { %>
+           <a class="btn btn-mini  liked"  id='collect_btn' action='de_collect'>
+                                                <span data-class="label"  class="label1">
+                                                    取消收藏
+                                                </span>
+                                                <span data-class="count" class="count">
+                                                    <%= topic.collect_count%>
+                                                </span>
+                    </a>
+         
+          <% } %>
+        <% } %>
+        
+        <% if (locals.current_user) { %>
+          <% if (!topic.in_zhan) { %>
+                    
+                       <a class="btn btn-mini"  id='zhan_btn' action='zhan'>
+                                                <span data-class="label" class="label1">
+                                                    点赞
+                                                </span>
+                                                <span data-class="count" class="count">
+                                                    <%= topic.zhan_count%>
+                                                </span>
+                    </a>
+                                            
+          <% } else { %>
+           <a class="btn btn-mini  liked"  id='zhan_btn' action='de_zhan'>
+                                                <span data-class="label"  class="label1">
+                                                    取消点赞
+                                                </span>
+                                                <span data-class="count" class="count">
+                                                    <%= topic.zhan_count%>
+                                                </span>
+                    </a>
+         
+          <% } %>
+        <% } %>
+        
+                                            
+                                        </span>
+                                        <span>
+                                            <a href="javascript:void(0);" class="btn btn-mini" data-action="comment"
+                                            data-contenttype="post" data-contentid="3861316" data-leadspost="false"
+                                            nnpost="false">
+                                                <span data-class="label">
+                                                    回复
+                                                </span>
+                                                <span data-class="count" class="count">
+                                                    <%= topic.reply_count%>
+                                                  
+                                                </span>
+                                            </a>
+                                        </span>
+                                        
+  											
+                                           <!--如果是本人就可以操作-->
+                                         <% if (locals.current_user) { %>
+                                         
+                                        <div class="dropdown">
+                                            <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);">
+                                                <b class="caret">
+                                                </b>
+                                            </a>
+                                            <ul class="dropdown-menu" role="menu">
+                                            	   <% if (current_user.is_admin) { %>
+                                                         <% if (topic.top) { %>
+                                                         <li role="menuitem" class="hidden-phone">
+                                                          <a href="/topic/<%= topic._id %>/top/0" >
+                                                              取消置顶
+                                                          </a>
+                                                        </li>
+                                                   <% } else { %>
+                                                   			<li role="menuitem" class="hidden-phone">
+                                                          <a href="/topic/<%= topic._id %>/top/1" >
+                                                              置顶
+                                                          </a>
+                                                        </li>
+                                                        <% } %>
+                                                        
+                                               		 <li role="menuitem" class="hidden-phone">
+                                                          <a href="/topic/<%= topic._id %>/edit" >
+                                                              编辑
+                                                          </a>
+                                                        </li>
+                                                        
+                                                        <li role="menuitem" class="hidden-phone">
+                                                          <a  href='javascript:;'  data-id="<%= topic._id %>" class='delete_topic_btn'>
+                                                              删除
+                                                          </a>
+                                                        </li>
+                                                	<% } else { %>
+          
+            <% if (current_user._id == topic.author_id) { %>
+            				<li role="menuitem" class="hidden-phone">
+                                                    <a href="/topic/<%= topic._id %>/edit" 
+                                                    data-hide-resource="false" >
+                                                        编辑
+                                                    </a>
+                                 </li>
+           
+            							
+                                            </ul>
+                                        </div>
+                                        
+       
+                                        
+          <% } %>
+        <% } %>
+                                       <% } %><!--end locals.current_use-->
+                                    </div>
+                                    
+                        
+                        
+                    <div class="media-comments" id="comment_container_3861316" data-num-comments="2"
+                    data-class="comment-like-container">
+                        <div class="arrow">
+                            <b class="arrow-up-dark">
+                            </b>
+                            <b class="arrow-up">
+                            </b>
+                        </div>
+                        
+                       
+                        <% if (topic.replies && topic.replies.length > 0) { %>
+                        <%- partial('reply/reply', topic.replies) %>
+                       <% } %>
+                       
+  
+                        <div class="media-comment show  comment_face" >
+                            <form class="form-inline">
+                                <textarea rows="1" id="wmd-reply" cols="1" class="input-block-level" placeholder="Write a reply">
+                                </textarea>
+                            </form>
+                        </div>
+                        
+                        
+                        <div class="media-comment hide comment_box" id="comment_box" >
+   					 <form class="form-inline"  id='reply_form' action='/<%= topic._id %>/reply' method='post'>
+       					 <div class="media-object hidden-phone">
+                         <%if(locals.current_user){%>
+          					  <a data-class="linked-name"  href="/user/<%=locals.current_user%>">
+                				<img class="avatar" src=  "<%=locals.current_user.avatar_url%>">
+           					 </a>
+                             <%}%>
+        				</div>
+                      <div class="media-body">
+                          <textarea rows="1"   id='wmd-input' name='r_content'   class="input-block-level editor"  style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: auto;" ></textarea>
+                          
+                          <input type='hidden' name='_csrf' id="_csrf" value='<%= csrf %>' />
+                          <button id='submit_btn' class='btn btn-primary btn-mini'>回复</button>
+                      </div>
+   				 </form>
+    
+				</div>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+        </div>
+<script>
+
+/*
+*回复框的变化和改变
+*
+*/
+$(function(){ 
+		$("#wmd-reply").focus(function(){
+				$(".comment_face").removeClass("show").addClass("hide");
+				$(".comment_box").removeClass("hide").addClass("show");
+				$("#wmd-input").focus()
+			});
+			
+		$("body").click(function(){
+			$(".comment_face").removeClass("hide").addClass("show");
+		    $(".comment_box").removeClass("show").addClass("hide");
+			});
+			
+    
+	$('#collect_btn').click(function(){
+		
+      var $me = $(this);
+      var action = $me.attr('action');
+	   var collect_count = $me.children(".count").text()
+	  
+      var data = {
+        topic_id: '<%= topic._id %>',
+        _csrf: '<%= csrf %>'
+      };
+	
+      $.post('/topic/' + action, data, function(data) {
+		  
+        if (data.status === 'success') {
+			
+          if (action == 'collect') {
+			    //下面是ajax取消收藏的内容
+				
+			collect_count =Number(collect_count)+1;
+			
+            $me.children('.label1').html('取消收藏');
+			$me.children('.count').html(collect_count);
+            $me.attr('action','de_collect');
+          } else {
+			  //下面是ajax加入收藏的内容西西里
+			collect_count =Number(collect_count)-1;
+            $me.children('.label1').html('收藏');
+			$me.children('.count').html(collect_count);
+            $me.attr('action','collect');
+          }
+         $me.toggleClass('liked'); 
+        } 
+      }, 'json'); 
+    });
+	
+	 
+	$('#zhan_btn').click(function(){
+		
+      var $me = $(this);
+      var action = $me.attr('action');
+	
+	   var collect_count = $me.children(".count").text()
+	  
+      var data = {
+        topic_id: '<%= topic._id %>',
+        _csrf: '<%= csrf %>'
+      };
+		
+      $.post('/topic/' + action, data, function(data) {
+		   
+        if (data.status === 'success') {
+			
+          if (action == 'zhan') {
+			 
+			collect_count =Number(collect_count)+1;
+			
+            $me.children('.label1').html('取消点赞');
+			$me.children('.count').html(collect_count);
+            $me.attr('action','de_zhan');
+          } else {
+			  //下面是ajax加入收藏的内容西西里
+			collect_count =Number(collect_count)-1;
+            $me.children('.label1').html('点赞');
+			$me.children('.count').html(collect_count);
+            $me.attr('action','zhan');
+          }
+         $me.toggleClass('liked'); 
+        } 
+      }, 'json'); 
+    });
+	
+	
+	$('.delete_topic_btn').click(function () {
+      var topicId = $(this).data('id');
+      if (topicId && confirm('确定要删除此话题吗？')) {
+        $.post('/topic/' + topicId + '/delete', { _csrf: $('#_csrf').val() }, function (result) {
+          if (!result.success) {
+            alert(result.message);
+          } else {
+            location.href = '/';
+          }
+        });
+      }
+      return false;
+    });
+	
+    $('.delete_reply_btn, .delete_reply2_btn').live('click', function() {
+      var $me = $(this);
+      if (confirm('确定要删除此回复吗？')) {
+        var reply_id = null;
+        if ($me.hasClass('delete_reply_btn')) {
+          reply_id = $me.parents('.reply_item').attr('reply_id');
+        }
+        if ($me.hasClass('delete_reply2_btn')) {
+          reply_id = $me.parents('.reply2_item').attr('reply_id');
+        }
+		
+        var data = {
+          reply_id: reply_id,
+          _csrf: "<%- csrf %>"
+        };
+		
+        $.post('/reply/' + reply_id + '/delete', data, function (data) {
+          if (data.status === 'success') {
+			 
+            if($me.hasClass('delete_reply_btn')){
+              $me.parents('.reply_item').remove();  
+            }
+            if($me.hasClass('delete_reply2_btn')){
+              $me.parents('.reply2_item').remove(); 
+            }
+          }
+        }, 'json'); 
+      } 
+      return false;
+    }); 
+	
+	$('.reply2_btn').click(function () {
+      var $btn = $(this);
+	  $btn.parents('.reply_item').find('.reply2-form').removeClass('hide');
+	  $btn.parents('.reply_item').find('.editor').focus();
+    });
+	
+	 $('.reply2_at_btn').click(function () {
+	  
+      var $btn = $(this);
+	  $btn.parents('.reply_item').find('.reply2-form').removeClass('hide');
+	  var editor = $btn.parents('.reply_item').find('.editor');
+	    // 这边是找到对应的用户名
+      var user = $btn.parents('.reply_item').find('.user-name a').html();
+	  
+      if (editor.val().indexOf('@' + user) < 0) {
+        editor.val('@' + user + ' ');
+      };
+	 
+    });
+	
+		
+}); 
+</script>

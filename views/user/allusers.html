@@ -1,0 +1,293 @@
+<div class="container">
+            <div class="row">
+<%- partial('sidebar') %>
+
+<div role="main" class="span single-column ">
+    <div class="header">
+        <h4 class="section-title">
+            邻居
+            <div class="actions hidden-phone">
+                <a href="http://demo.trynextdoor.com/invitation_email/?is=dir" class="btn btn-primary btn-small">
+                    邀请
+                </a>
+            </div>
+        </h4>
+        <p class="section-description">
+            Highhome:共建和谐家园， 共享阖家团圆。
+        </p>
+    </div>
+    <ul class="nav nav-tabs section-tabs">
+          <li class="active">
+            <a href="/users/allusers">
+                所有邻居
+            </a>
+        </li>
+        
+        <li class="">
+            <a href="/users/atunit/<%= locals.current_user.name %>">
+               同一单元
+            </a>
+        </li>
+        
+         <li class="">
+            <a href="/users/building/<%= locals.current_user.name %>">
+               同一幢
+            </a>
+        </li>
+        <li class="">
+            <a href="/users/village/<%= locals.current_user.name %>">
+               同一园
+            </a>
+        </li>
+        
+       <li class="">
+            <a href="/users/my_neighbour/<%= locals.current_user.name %>">
+                我的邻居
+            </a>
+        </li>
+    </ul>
+    
+    <!--<h6 class="section-header directory-header">
+        <span class="sort-label">
+            Sorted by:
+            <span>
+                <a href="javascript:void(0);" data-action="sort" data-value="0" class="active">
+                    First Name
+                </a>
+            </span>
+            <span>
+                <a href="javascript:void(0);" data-action="sort" data-value="1" class="">
+                    Last Name
+                </a>
+            </span>
+            <span>
+                <a href="javascript:void(0);" data-action="sort" data-value="2" class="">
+                    Address
+                </a>
+            </span>
+            <span>
+                <a href="javascript:void(0);" data-action="sort" data-value="3" class="">
+                    Newest
+                </a>
+            </span>
+        </span>
+        <div id="id_navlist_span">
+            <ul id="navlist" class="nav nav-pills">
+                <li>
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="All"
+                    class="active">
+                        All
+                    </a>
+                    &nbsp;
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="A">
+                        A
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="B">
+                        B
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="C">
+                        C
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="D">
+                        D
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="E">
+                        E
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="F">
+                        F
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="G">
+                        G
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="H">
+                        H
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="I">
+                        I
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="J">
+                        J
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="K">
+                        K
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="L">
+                        L
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="M">
+                        M
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="N">
+                        N
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="O">
+                        O
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="P">
+                        P
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="Q">
+                        Q
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="R">
+                        R
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="S">
+                        S
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="T">
+                        T
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="U">
+                        U
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="V">
+                        V
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="W">
+                        W
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="X">
+                        X
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="Y">
+                        Y
+                    </a>
+                </li>
+                <li class="active_nav">
+                    <a href="javascript:void(0);" data-target="letter-link" data-letter="Z">
+                        Z
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="id_street_filter_span" class="hide">
+            <div class="select2-container input-block-level" id="s2id_id_street_filter">
+                <a href="http://demo.trynextdoor.com/directory/#" onclick="return false;"
+                class="select2-choice select2-default">
+                    <span>
+                        Filter by street name
+                    </span>
+                    <abbr class="select2-search-choice-close" style="display: none;">
+                    </abbr>
+                    <div>
+                        <b>
+                        </b>
+                    </div>
+                </a>
+                <div class="select2-drop select2-offscreen">
+                    <div class="select2-search">
+                        <input type="text" autocomplete="off" class="select2-input">
+                    </div>
+                    <ul class="select2-results">
+                    </ul>
+                </div>
+            </div>
+            <select id="id_street_filter" placeholder="Filter by street name" class="input-block-level"
+            style="display: none;">
+                <option value="">
+                </option>
+                <option>
+                    Crest Dr NE
+                </option>
+                <option>
+                    Fairway Dr NE
+                </option>
+                <option>
+                    Forest Dr NE
+                </option>
+                <option>
+                    Lakemont Dr NE
+                </option>
+                <option>
+                    NE Crown Pl
+                </option>
+                <option>
+                    NE Park Pl
+                </option>
+                <option>
+                    NE Sunrise Vista
+                </option>
+                <option>
+                    Ridge Dr NE
+                </option>
+            </select>
+        </div>
+    </h6>-->
+    
+    <div class="spinner-container hide" id="directory_loading_spinner" style="display: none;">
+        <img class="spinner" src="./index_files/32-ajax-loader-f4f3f3.gif">
+    </div>
+    
+    <div id="directory_column">
+    	<% if(locals.users && users.length > 0){ %>
+			<ul id="member-list" class="unstyled list"  style="border:0;">
+				<%- partial('user/top100_user',{collection:users,as:'user'}) %>			
+			</ul>
+			<% }else{ %>
+			<p>还没有用户</p>	
+			<% } %>
+    </div>
+    
+    <button class="btn-link btn-block hide" id="directory_view_more" data-action="view-more"
+    style="display: inline-block;">
+        <img src="./index_files/16-ajax-loader-green-dark.gif">
+        Loading more neighbors...
+    </button>
+    <div id="directory_data" class="hide" data-current_page="1" data-letter=""
+    data-sort_by="0" data-street_names="" data-more_pages="true">
+    </div>
+</div>
+</div>
+        </div>

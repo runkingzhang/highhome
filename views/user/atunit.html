@@ -1,0 +1,74 @@
+<div class="container">
+            <div class="row">
+<%- partial('sidebar') %>
+
+<div role="main" class="span single-column ">
+    <div class="header">
+        <h4 class="section-title">
+            邻居
+            <div class="actions hidden-phone">
+                <a href="http://demo.trynextdoor.com/invitation_email/?is=dir" class="btn btn-primary btn-small">
+                    邀请
+                </a>
+            </div>
+        </h4>
+        <p class="section-description">
+            Highhome:共建和谐家园， 共享阖家团圆。
+        </p>
+    </div>
+    <ul class="nav nav-tabs section-tabs">
+        <li class="active">
+            <a href="/users/top100">
+                所有邻居
+            </a>
+        </li>
+        
+        <li class="">
+            <a href="/users/<%= locals.current_user.name %>/<%= locals.current_user.atunit %>">
+               同一单元
+            </a>
+        </li>
+         <li class="">
+            <a href="/users/<%= locals.current_user.name %>/<%= locals.current_user.building %>">
+               同一幢
+            </a>
+        </li>
+        <li class="">
+            <a href="/users/<%= locals.current_user.name %>/<%= locals.current_user.village %>">
+                同一个园
+            </a>
+        </li>
+        <li class="">
+            <a href="http://demo.trynextdoor.com/directory/leads/">
+                我的邻居
+            </a>
+        </li>
+    </ul>
+    
+    <div class="spinner-container hide" id="directory_loading_spinner" style="display: none;">
+        <img class="spinner" src="./index_files/32-ajax-loader-f4f3f3.gif">
+    </div>
+    
+    <div id="directory_column">
+    	<% if(locals.users && users.length > 0){ %>
+			<ul id="member-list" class="unstyled list">
+				 <%- partial('user/atunit_users',{collection:users,as:'user'}) %>			
+			</ul>
+			<% }else{ %>
+			<p>还没有用户</p>	
+			<% } %>
+    </div>
+    
+    
+    <button class="btn-link btn-block hide" id="directory_view_more" data-action="view-more"
+    style="display: inline-block;">
+        <img src="./index_files/16-ajax-loader-green-dark.gif">
+        Loading more neighbors...
+    </button>
+    
+    <div id="directory_data" class="hide" data-current_page="1" data-letter=""
+    data-sort_by="0" data-street_names="" data-more_pages="true">
+    </div>
+</div>
+</div>
+        </div>

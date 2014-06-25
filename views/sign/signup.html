@@ -1,0 +1,460 @@
+<style>
+
+.navbar{display:none;}
+.navbar-fixed-offset { padding:0px  0 0 0;}
+.navbar-promo{ display:none}
+</style>
+
+ 
+<% if (locals.success) { %>
+			<div class="navbar-promo navbar-promo-default">
+            <div class="container">
+                <div class="pull-left">
+                    <strong>
+                       <%= success %>
+                    </strong>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+        <div class="nav nav-simple nav-nux">
+            <div class="nav-inner">
+                <span class="brand">
+                    <i class="icon-nextdoor icon-house-green">
+                    </i>
+                    Highhome
+                </span>
+                <div class="nav-progress">
+                    <ol>
+                        <li>
+                            <span class="badge">
+                                1
+                            </span>
+                            <span>
+                                注册账号
+                            </span>
+                            &nbsp;»
+                        </li>
+                        <li  class="active">
+                            <span class="badge">
+                                2
+                            </span>
+                            <span>
+                                登陆邮件，激活账号
+                            </span>
+                            &nbsp;»
+                        </li>
+                        <li>
+                            <span class="badge">
+                                3
+                            </span>
+                            <span>
+                                邀请邻居加入
+                            </span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+	<div class="main">
+        <div class="container">
+            <h1 id="nux_header">
+                    亲，请登录邮件点击链接激活账号。<br>
+                    
+            </h1>
+            <div class="row">
+                <div class="span8">
+                    <div>
+                    		如果没有收到邮件，请联系runkingzhang@163.com&&QQ：425629018
+                    		<p>和家园QQ群</p>
+                        	<p>御园----御园，我们共同的家。QQ群号----321196604  </p>
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>		
+	<% } else { %>
+             
+    <div class="container">
+        <div class="nav nav-simple nav-nux">
+            <div class="nav-inner">
+                <span class="brand">
+                    <i class="icon-nextdoor icon-house-green">
+                    </i>
+                    Highhome
+                </span>
+                <div class="nav-progress">
+                    <ol>
+                        <li class="active">
+                            <span class="badge">
+                                1
+                            </span>
+                            <span>
+                                注册账号
+                            </span>
+                            &nbsp;»
+                        </li>
+                        <li>
+                            <span class="badge">
+                                2
+                            </span>
+                            <span>
+                                登陆邮箱，验证账号
+                            </span>
+                            &nbsp;»
+                        </li>
+                        <li>
+                            <span class="badge">
+                                3
+                            </span>
+                            <span>
+                                邀请邻居加入
+                            </span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="main">
+        <div class="container">
+        	 <% if (locals.error) { %>
+			<div class="alert alert-error">	
+				<a class="close" data-dismiss="alert" href="#">&times;</a>
+				<strong><%= error %></strong>
+			</div>
+			<% } %>
+            
+            <h1 id="nux_header">
+                Welcome! 欢迎加入和家园网上社区！
+            </h1>
+            
+            <p id="intro_text" class="intro-text">
+                <strong>
+                    申请后请激活账号:
+                </strong>
+                申请账号后，请登录邮箱点击链接激活账号。如果没有收到邮件，请联系runkingzhang@163.com
+            </p>
+            
+            <div class="row">
+                <div class="span8">
+                    <div>
+                        	<form id='signup_form'  action='/signup'  class="form-horizontal" method="post">
+                            <fieldset>
+                                <div class="control-group">
+                                    <label class="control-label" for="name">
+                                        用户名：
+                                    </label>
+                                    <div class='controls'>
+                                        <% if (locals.name) { %>
+                                        <input class='input-xlarge' id='name' name='name' size='30' type='text' value='<%= name %>' />
+                                        <% } else { %>
+                                        <input class='input-xlarge' id='name' name='name' size='30' type='text'  placeholder="请输入用户名"  value='' />
+                                        <% } %>
+                                    </div>
+                                </div>
+                                
+                                 <div class="control-group">
+                                    <label class="control-label" for="email">
+                                       电子邮箱：
+                                    </label>
+                                    <div class='controls'>
+                                        <% if (locals.email) { %>
+                                        <input class='input-xlarge' id='email' name='email' size='30' type='text' value='<%= email %>' />
+                                        <% } else { %>
+                                        <input class='input-xlarge' id='email' name='email' size='30' type='text' placeholder="请输入电子邮件" />
+                                        <% } %>
+                                    </div>
+                                </div>
+                                
+                                 <div class="control-group">
+                                    <label class="control-label" for="id_email">
+                                        密码：
+                                    </label>
+                                    <div class="controls">
+                                    <input class='input-xlarge' id='pass' name='pass' size='30'  placeholder="请输入密码"type='password' />
+                                    </div>
+                                </div>
+                                
+                                <div class="control-group">
+                                    <label class="control-label" for="re_pass">
+                                        确认密码：
+                                    </label>
+                                    <div class="controls">
+                                    <input class='input-xlarge' id='re_pass' name='re_pass' size='30'  placeholder="请再次输入密码" type='password' />
+                                    </div>
+                                </div>
+                                
+                                <div class="control-group " id="id_city_state_container">
+                                    <label class="control-label">
+                                        请选择你的家：
+                                    </label>
+                                    <div class="controls">
+                                        <select id="village" class="input-small inline" name="village">
+                                            <option value="" selected="selected">
+                                                园区
+                                            </option>
+                                            <option value="1">
+                                                御园
+                                            </option>
+                                            <option value="2">
+                                                紫园
+                                            </option>
+                                            <option value="3">
+                                                翰园
+                                            </option>
+                                            <option value="4">
+                                                景园
+                                            </option>
+                                            <option value="6">
+                                                琉园
+                                            </option>
+                                            <option value="7">
+                                                懿园
+                                            </option>
+                                        </select>
+                                        <select id="building" class="input-small inline" name="building">
+                                            <option value="" selected="selected">
+                                                几幢
+                                            </option>
+                                            <option value="1">
+                                                1幢
+                                            </option>
+                                            <option value="2">
+                                               2幢
+                                            </option>
+                                            <option value="3">
+                                               3幢
+                                            </option>
+                                            <option value="4">
+                                                4幢
+                                            </option>
+                                            <option value="5">
+                                                5幢
+                                            </option>
+                                            <option value="6">
+                                              6幢
+                                            </option>
+                                            <option value="7">
+                                                7幢
+                                            </option>
+                                            <option value="8">
+                                                8幢
+                                            </option>
+                                            <option value="9">
+                                                9幢
+                                            </option>
+                                            <option value="10">
+                                                10幢
+                                            </option>
+                                            <option value="11">
+                                                11幢
+                                            </option>
+                                        </select>
+                                        <select id="atunit" class="input-small inline" name="atunit">
+                                            <option value="" selected="selected">
+                                                单元
+                                            </option>
+                                            <option value="1">
+                                                1单元
+                                            </option>
+                                            <option value="2">
+                                                2单元
+                                            </option>
+                                            <option value="3">
+                                                3单元
+                                            </option>
+                                            <option value="4">
+                                                4单元
+                                            </option>
+                                            <option value="5">
+                                                5单元
+                                            </option>
+                                        </select>
+                                        <select id="room" class="input-small inline" name="room">
+                                            <option value="" selected="selected">
+                                                房号
+                                            </option>
+                                            <option value="101">
+                                                101
+                                            </option>
+                                            <option value="102">
+                                                102
+                                            </option>
+                                            <option value="103">
+                                                103
+                                            </option>
+                                            <option value="104">
+                                                104
+                                            </option>
+                                            <option value="201">
+                                                201
+                                            </option>
+                                            <option value="202">
+                                                202
+                                            </option>
+                                            <option value="203">
+                                                203
+                                            </option>
+                                            <option value="204">
+                                                204
+                                            </option>
+                                            <option value="301">
+                                                301
+                                            </option>
+                                            
+                                            <option value="302">
+                                                302
+                                            </option>
+                                             <option value="303">
+                                                303
+                                            </option>
+                                            
+                                            <option value="304">
+                                                304
+                                            </option>
+                                            
+                                            <option value="401">
+                                                401
+                                            </option>
+                                            <option value="402">
+                                                402
+                                            </option>
+                                            <option value="403">
+                                                403
+                                            </option>
+                                            <option value="404">
+                                                404
+                                            </option>
+                                            
+                                            <option value="501">
+                                                501
+                                            </option>
+                                            <option value="502">
+                                                502
+                                            </option>
+                                            <option value="503">
+                                                503
+                                            </option>
+                                            <option value="504">
+                                                504
+                                            </option>
+                                            
+                                            <option value="601">
+                                                601
+                                            </option>
+                                            <option value="602">
+                                                602
+                                            </option>
+                                            <option value="603">
+                                                603
+                                            </option>
+                                            <option value="604">
+                                                604
+                                            </option>
+                                            
+                                            <option value="701">
+                                                701
+                                            </option>
+                                            <option value="702">
+                                                702
+                                            </option>
+                                            <option value="703">
+                                                703
+                                            </option>
+                                            <option value="704">
+                                                704
+                                            </option>
+                                            <option value="801">
+                                                801
+                                            </option>
+                                            <option value="802">
+                                                802
+                                            </option>
+                                            <option value="803">
+                                                803
+                                            </option>
+                                            <option value="804">
+                                                804
+                                            </option>
+                                              <option value="901">
+                                                901
+                                            </option>
+                                            <option value="902">
+                                                902
+                                            </option>
+                                             <option value="903">
+                                                903
+                                            </option>
+                                            <option value="904">
+                                                904
+                                            </option>
+                                            <option value="1001">
+                                                1001
+                                            </option>
+                                            <option value="1002">
+                                                1002
+                                            </option>
+                                            <option value="1003">
+                                                1003
+                                            </option>
+                                            <option value="1004">
+                                                1004
+                                            </option>
+                                            <option value="1101">
+                                                1101
+                                            </option>
+                                            <option value="1102">
+                                                1102
+                                            </option>
+                                            <option value="1103">
+                                                1103
+                                            </option>
+                                            <option value="1104">
+                                                1104
+                                            </option>
+                                            <option value="1201">
+                                                1201
+                                            </option>
+                                            <option value="1202">
+                                                1202
+                                            </option>
+                                            <option value="1301">
+                                                1301
+                                            </option>
+                                            <option value="1302">
+                                                1302
+                                            </option>
+                                            <option value="1401">
+                                                1401
+                                            </option>
+                                            <option value="1402">
+                                                1402
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <input type='hidden' name='community' value='1' /> 
+                                <input type='hidden' name='_csrf' value='<%= csrf %>' />
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <button id="id_submit_button" type="submit" class="btn btn-primary btn-large"
+                                        data-nd-tracker-event="UI Action" data-nd-tracker-description="Choose Address Get Started">
+                                            加入和家园
+                                        </button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <% } %>

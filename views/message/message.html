@@ -1,0 +1,84 @@
+<% if (message.has_read) { %>
+			<li data-message-display="one-message" 
+        class="hide read" data-message-view="inbox" style="display: list-item;" message_id='<%= message._id %>'>
+<% } else { %>
+			
+			<li data-message-display="one-message" 
+        class="hide read" data-message-view="inbox" style="display: list-item;" message_id='<%= message._id %>'>
+<% } %>
+		<a data-class="linked-name" target='_blank' href="/user/<%= message.author.name %>" style="width:40px; height:40px;">
+                <img class="avatar" src="<%= message.author.avatar_url %>"
+                alt="<%= message.author.name %>">
+         </a>
+         
+		<% if(message.type == 'reply'){ %>
+    	 <span class="message">
+                    <a href="/user/<%= message.author.name %>" class="subject">
+                       <%= message.author.name %>
+                    </a>
+                    <span class="body">
+                        	回复了你的话题
+                         <a href="/topic/<%- message.topic._id + (message.reply ? '#' + message.reply._id : '') %>" target='_blank'><%= message.topic.title %></a>
+                    </span>
+            </span>
+            <span class="timestamp">
+               <%= message.friendly_create_at %>
+            </span>
+	<% } %>
+    
+	<% if(message.type == 'reply2'){ %>
+    	 <span class="message">
+                    <a href="/user/<%= message.author.name %>" class="subject">
+                       <%= message.author.name %>
+                    </a>
+                    <span class="body">
+                        	在话题
+                          <a href="/topic/<%= message.topic._id + (message.reply ? '#' + message.reply._id : '') %>" target='_blank'><%= message.topic.title %></a> 
+                            中回复了你！
+                    </span>
+            </span>
+            <span class="timestamp">
+               <%= message.friendly_create_at %>
+            </span>
+            
+	<% } %>
+    
+	<% if(message.type == 'follow'){ %>
+   		    <span class="message">
+                    <a href="/user/<%= message.author.name %>" class="subject">
+                       <%= message.author.name %>
+                    </a>
+                    <span class="body">
+                        关注了你！
+                    </span>
+            </span>
+            <span class="timestamp">
+                <%= message.friendly_create_at %>
+            </span>
+	<% } %>
+    
+	<% if (message.type == 'at'){ %>
+    	<span class="message">
+                    <a href="/user/<%= message.author.name %>" class="subject">
+                       <%= message.author.name %>
+                    </a>
+                    <span class="body">
+                      在话题
+                      <a href="/topic/<%= message.topic._id + (message.reply ? '#' + message.reply._id : '') %>" target='_blank'><%= message.topic.title %></a>
+			中@了你!
+                    </span>
+            </span>
+            <span class="timestamp">
+               <%= message.friendly_create_at %>
+            </span>
+	<% } %>
+    		
+    <% if (message.has_read) { %>
+	
+	<% } else { %>
+	
+	<% } %>
+    </li>
+    
+    
+    

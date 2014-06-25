@@ -1,0 +1,49 @@
+ <li data-class="linked-name" data-name="<%= user.name %>">
+               <img class="avatar"  src="<%= user.avatar_url %>" title="<%= user.name %>" />
+                <span class="message">
+                    <a href="/user/<%= user.name %>" class="linked-name"
+                    >
+                        <span class="name">
+                            <%= user.name %>
+                        </span>
+                    </a>
+                    <span class="hide" data-toggle="mute_icon" >
+                        <span class="mute-label" data-rel="tooltip" title="" data-original-title="Adam is on mute">
+                            <i class="glyphicon-volume-off">
+                            </i>
+                        </span>
+                    </span>
+                </span>
+                
+                <span class="message-meta">
+                    <span class="location">
+                        和家园，<% if (user.village==1) { %>
+					御园
+				<% } else if (user.village==2) { %>
+				 紫园
+                 <% } else if (user.village==3) { %>
+				  翰园
+                 <% } else if (user.village==4) { %>
+				  景园
+                  <% } else if (user.village==5) { %>
+				  琉园
+                  <% } else if (user.village==6) { %>
+				  懿园
+				<% } %>
+               ，<%= user.building %>幢，
+               <%= user.atunit %>单元
+                    </span>
+                </span>
+              
+            </li>
+<script>
+$(function(){
+	
+	$('.linked-name').click(
+		function(){
+			return document.location = "/user/" + $(this).data().name + "/"
+			}
+	)
+	
+	})
+</script>

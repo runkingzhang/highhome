@@ -1,0 +1,15 @@
+.clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
+.clearfix:after{clear:both;}
+.hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}
+.input-block-level{display:block;width:100%;min-height:30px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+.lt-ie9 .nd-logo{margin-top:-15px !important;}
+.input-block-level{min-height:30px !important;}
+.lt-ie9 .input-block-level{min-height:24px !important;padding-top:5px !important;padding-bottom:5px !important;}
+dl.dl-horizontal dt,form.dl-horizontal dt,dl.form-horizontal dt,form.form-horizontal dt,dl.dl-horizontal .control-label,form.dl-horizontal .control-label,dl.form-horizontal .control-label,form.form-horizontal .control-label{width:160px;}
+dl.dl-horizontal dd,form.dl-horizontal dd,dl.form-horizontal dd,form.form-horizontal dd,dl.dl-horizontal .controls,form.dl-horizontal .controls,dl.form-horizontal .controls,form.form-horizontal .controls{padding-left:160px;}
+.single-column .basic-info{background:none !important;min-height:inherit;}.single-column .basic-info.map-cover{padding-top:15px;min-height:inherit;}.single-column .basic-info.map-cover h4{margin-top:0;}
+.list-filter ul.filter{*zoom:1;}.list-filter ul.filter:before,.list-filter ul.filter:after{display:table;content:"";line-height:0;}
+.list-filter ul.filter:after{clear:both;}
+.list-filter ul.filter li{float:left;width:32%;}
+ul.list li{min-height:inherit !important;}
+ul.list .message .subject{font-weight:bold;}

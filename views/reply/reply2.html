@@ -1,0 +1,59 @@
+
+<div    class="media-comment reply2_item" style="margin:0 0 0 40px ; border-top:1px solid #EFEFEF;" reply_id='<%= reply2._id %>'>
+                        
+                            <div class="" style="padding:10px;">
+                                <div class="media-object hidden-phone">
+                                    <a data-class="linked-name"  href="/user/<%= reply2.author.name  %>">
+                                        <img  class="avatar"  src="<%= reply2.author.avatar_url %>" title="<%= reply2.author.name %>" />
+                                    </a>
+                                </div>
+                                
+                                <div class="media-body">
+                                    <h6 class="media-author">
+                                        <span class="user-name">
+                                            <a data-class="linked-name"  href="/user/<%= reply2.author.name %>">
+                                            	<%if(reply.author.nickname){%>
+                                            <%= reply.author.nickname %>
+                                            <%}else{%>
+                                            <%= reply.author.name %>
+                                            <%}%>
+                                    		</a>
+                                        </span>
+                                        
+                                        
+                                        
+                                        <span class="timestamp">
+                                            <%= reply2.friendly_create_at %>
+                                        </span>
+                                        
+                                    </h6>
+                                    <p>
+                                        <%- markdown(reply2.content) %>
+                                    </p>
+                                    
+                                    <div class="media-actions">
+                                    	 <% if (locals.current_user && current_user._id.toString() == reply2.author._id.toString()) { %>
+                                       <a href="javascript:void(0);"  class='delete_reply2_btn'>
+                                            <span data-class="label">
+                                                删除
+                                            </span>
+                                        </a>
+                                    <% } %>
+      								<% if (locals.current_user) { %>
+          <a href='javascript:void(0)' class='dark reply2_at_btn'>回复</a>  
+        <% } %>
+        
+                                       
+                                    </div>
+                                </div>
+                                
+                                <div class='clearfix'>
+                                
+                                <div class='clearfix'>
+    
+  </div>
+    
+  </div>
+    </div>
+</div>
+

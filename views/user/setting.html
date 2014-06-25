@@ -1,0 +1,179 @@
+<% if(locals.error){ %>
+            <div class="navbar-promo navbar-promo-default">
+            <div class="container">
+                <div class="pull-left">
+                    <strong>
+                       <%= error %>
+                    </strong>
+                </div>
+            </div>
+        </div>
+			<% } %>
+			<% if (locals.success) { %>
+            <div class="navbar-promo navbar-promo-default">
+            <div class="container">
+                <div class="pull-left">
+                    <strong>
+                       <%= success %>
+                    </strong>
+                </div>
+            </div>
+        </div>
+		<% } %>
+            
+<div class="container">
+            <div class="row">            
+<%- partial('sidebar') %>
+
+<div role="main" class="span single-column ">
+		<div id='content'>
+	<div class='panel'>
+		<div class='inner'>
+			
+			<form id='setting_form' class='form-horizontal' action='/setting' method='post' enctype="multipart/form-data">
+            	<div class="header">
+            <h4 class="section-title">
+                编辑个人信息
+                <div class="actions">
+                    <button class="btn btn-primary" type="submit" data-action="prepare-submission">
+                         保存修改
+                    </button>
+                </div>
+            </h4>
+            
+        </div>
+        
+        	<div class="more-info">
+            		<h4>
+               基本信息
+            </h4>
+                    <div class='control-group'>
+					<label class='control-label' for='name'>用户名</label>
+					<div class='controls'>
+						<input class='input-xlarge readonly' id='name' name='name' size='30' type='text' readonly='true' value="<%= name %>" />
+					</div>
+				</div>
+                <div class='control-group'>
+					<label class='control-label' for='nickname'>昵称</label>
+					<div class='controls'>
+						<input class='input-xlarge' id='nickname' name='nickname' type='text' value="<%= locals.nickname || '' %>" />
+					</div>
+				</div>
+                <div class="control-group ">
+                <div class="control-label">
+                    头像URL
+                </div>
+                
+                
+                <div class='controls'>
+                			<input id="photo_id" class="file" type="file" name="photo">
+   			    </div>
+                
+            </div>
+                
+                <div class='control-group'>
+					<label class='control-label' for='hometown'>家乡</label>
+					<div class='controls'>
+						<input class='input-xlarge' id='hometown' name='hometown' type='text' value="<%= locals.hometown || '' %>" />
+					</div>
+				</div>
+                <div class='control-group'>
+					<label class='control-label' for='job'>职业</label>
+					<div class='controls'>
+						<input class='input-xlarge' id='job' name='job' type='text' value="<%= locals.job || '' %>" />
+					</div>
+				</div>
+                <div class='control-group'>
+					<label class='control-label' for='interests'>兴趣爱好</label>
+					<div class='controls'>
+						<input class='input-xlarge' id='interests' name='interests' type='text' value="<%= locals.interests || '' %>" />
+					</div>
+				</div>
+                <div class='control-group'>
+					<label class='control-label' for='url'>个人网站</label>
+					<div class='controls'>
+						<% if(locals.url){ %>
+						<input class='input-xlarge' id='url' name='url' size='30' type='text' value="<%= url %>" />
+						<% }else{ %>
+						<input class='input-xlarge' id='url' name='url' size='30' type='text' value='' />
+						<% } %>
+					</div>
+				</div>
+                <div class='control-group'>
+					<label class='control-label' for='signature'>个性签名</label>
+					<div class='controls'>
+						<% if(locals.signature){ %>
+						<input class='input-xlarge' id='signature' name='signature' size='30' type='text' value="<%= signature %>" />
+						<% }else{ %>
+						<input class='input-xlarge' id='signature' name='signature' size='30' type='text' value='' />
+						<% } %>
+					</div>
+				</div>
+                <div class='control-group'>
+					<label class='control-label' for='profile'>个人简介</label>
+					<div class='controls'>
+						<% if(locals.profile){ %>
+						<textarea class='input-xlarge' id='profile' name='profile' rows='4'><%= profile %></textarea>
+						<% }else{ %>
+						<textarea class='input-xlarge' id='profile' name='profile' rows='4'></textarea>
+						<% } %>
+					</div>
+				</div>
+                
+        		
+                	
+            </div>
+            <div class=" more-info ">
+            		<h4>联系方式</h4>
+                    <div class='control-group'>
+					<label class='control-label' for='email'>电子邮件</label>
+					<div class='controls'>
+						<input class='input-xlarge readonly' id='email' name='email' size='30' type='text' readonly='true' value="<%= email %>" />
+					</div>
+				</div>
+                	<div class='control-group'>
+					<label class='control-label' for='phone'>手机号码</label>
+					<div class='controls'>
+						<input class='input-xlarge ' id='phone' name='phone' size='30' type='text'  value="<%= locals.phone || '' %>" />
+					</div>
+				</div>
+                    <div class='control-group'>
+					<label class='control-label' for='qq'>QQ号码</label>
+					<div class='controls'>
+						<input class='input-xlarge ' id='qq' name='qq' size='30' type='text'  value="<%= locals.qq || '' %>" />
+					</div>
+				</div>
+                	<div class='control-group'>
+					<label class='control-label' for='weibo'>微博地址</label>
+					<div class='controls'>
+						<input class='input-xlarge ' id='weibo' name='weibo' size='30' type='text'  value="<%= locals.weibo || '' %>" />
+					</div>
+				</div>
+                
+                
+                    
+                    
+            </div>
+            
+				
+				 <hr>
+                 
+				<input type='hidden' id='action' name='action' value='change_setting' />
+				<input type='hidden' name='_csrf' value='<%= csrf %>' />
+                
+				<div class='form-actions'>
+					<input type='submit' class='btn' value='保存设置' />
+				</div>
+                
+			</form>
+		</div>
+	</div>
+
+	
+
+	
+</div>
+</div>
+
+</div>
+        </div>

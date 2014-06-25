@@ -1,0 +1,59 @@
+
+
+
+<li data-href=""/topic/<%= topic._id %>" >
+            <span class="message">
+                <a class="" href="/topic/<%= topic._id %>">
+                    <span class="subject">
+                        <%= topic.title %>
+                    </span>
+                </a>
+                <%if(topic.image){%>
+                	<span class="photo">
+                    <i class="glyphicon-picture">
+                    </i>
+                </span>
+                <%}%>
+                
+                
+            </span>
+            
+            <span class="message-meta">
+                <span class="author">
+                    <span class="user-name">
+                        <%= topic.author.name %>
+                    
+            </span>
+            <small class="timestamp" utc="2014-03-21T20:18:52">
+                <%= topic.friendly_create_at %>
+            </small>
+            <span class="count active collapse in">
+                <span class="comments">
+                    <i class="glyphicon-comment">
+                    </i>
+                    <%= topic.reply_count%>
+                </span>
+            </span>
+        </li>
+
+        
+<script>
+
+/*
+*回复框的变化和改变
+*专业变是一个发布框的显示内容。
+*/
+$(function(){ 
+		$(".wmd-reply").focus(function(){
+				 $(this).parents(".comment_face").removeClass("show").addClass("hide");
+				 $(this).parents(".comment_face").siblings(".comment_box").removeClass("hide").addClass("show");
+				$(this).parents(".comment_face").siblings(".comment_box").find(".wmd-input").focus()
+			});
+			
+		$("body").click(function(){
+			$(".comment_face").removeClass("hide").addClass("show");
+		    $(".comment_box").removeClass("show").addClass("hide");
+			})
+		
+}); 
+</script>

@@ -1,0 +1,101 @@
+
+<style>
+
+.navbar{display:none;}
+.navbar-fixed-offset { padding:0  0 0 0;}
+.navbar-promo{ display:none}
+
+</style>
+<script>
+/*让页面已加载就加入对应的class，这边图片才会对应显示*/
+$(function(){
+	$("body").addClass("login");
+	})
+</script>
+<% if(locals.error){ %>
+			<div class=" shadow navbar-promo-signin">
+        	<div class="container">
+             <%= error %>
+        </div>
+    </div>
+<% } %>
+
+    <div class="container">
+        <div class="row">
+            <div class="span login-info">
+                <div class="brand">
+                    <a href="https://highhme.org/">
+                        <img src="/public/images/backgrounds/nextdoor-icons-house-60-73.png" alt="House icon">
+                        Highhome
+                    </a>
+                </div>
+                <h2>
+                   	 Highhome is our home!
+                    <br>
+                    共建和谐家园，
+                    <br>
+                    共享阖家团圆。
+                </h2>
+            </div>
+            <div class="span login-cta">
+                <div class="login-form">
+                    <form method="post" class="form-vertical" id='signin_form' action='/signin'>
+                        <fieldset> 
+                            <h6 class="login-title" style="font-size:16px; text-decoration:none; font-variant: normal; font-style:normal;margin:0 0 20px 0;">
+                               ----------进入Highhome----------
+                               
+                            </h6>
+                            
+                            <div class="control-group">
+                                <div class="controls">                                  <input class='input-xlarge' id='name' name='name' placeholder="请输入用户名"  size='30' type='text' style="width:255px;" />
+                                </div>
+                            </div>
+                            <div class='controls'>
+						
+					</div>
+                    
+                            
+                            <div class="control-group">
+                                <div class="controls">
+                                   <!-- <input id="pass" type="password" placeholder="请输入密码" class="input-block-level"
+                                    name="password" id="pass">-->
+                                    
+                                    <input class='input-xlarge' id='pass' name='pass' placeholder="请输入密码"  size='30' type='password' style="width:255px;" />
+                                   <div class="help-block">
+                                        <div class="pull-left">
+                                        </div>
+                                        <div class="pull-right">
+                                            <span id="forgot_password">
+                                                <a href='/search_pass'>忘记密码了?</a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="actions">
+                                <button type="submit" id="signin_button" class="btn btn-primary btn-large btn-block"
+                                data-nd-tracker-event="UI Action" data-nd-tracker-description="Regular login button">
+                                    登录
+                                </button>
+                                <div class="help-block">
+                                    纳尼，没有账号?
+                                    <a href="/signup">
+                                        注册
+                                    </a>
+                                    or
+                                    <a href="https://highhome.org/">
+                                        学习更多
+                                    </a>
+                                    .
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+   

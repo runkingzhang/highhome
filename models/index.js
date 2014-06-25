@@ -1,0 +1,34 @@
+// mongppse 是全部的
+var mongoose = require('mongoose');
+// config 是个信息的内容而已
+var config = require('../config').config;
+
+mongoose.connect(config.db, function (err) {
+  if (err) {
+    console.error('connect to %s error: ', config.db, err.message);
+    process.exit(1);
+  }
+});
+//index.js 只是一个入口和一个出口，中间部分是在对应的模块信息中完成的。这边是信息的一个入口和出口文件
+// models
+require('./tag');
+require('./user');
+require('./topic');
+require('./topic_tag');
+require('./reply');
+require('./topic_collect');
+require('./topic_zhan');
+require('./tag_collect');
+require('./relation');
+require('./message');
+
+exports.Tag = mongoose.model('Tag');
+exports.User = mongoose.model('User');
+exports.Topic = mongoose.model('Topic');
+exports.TopicTag = mongoose.model('TopicTag');
+exports.Reply = mongoose.model('Reply');
+exports.TopicCollect = mongoose.model('TopicCollect');
+exports.TopicZhan = mongoose.model('TopicZhan');
+exports.TagCollect = mongoose.model('TagCollect');
+exports.Relation = mongoose.model('Relation');
+exports.Message = mongoose.model('Message');

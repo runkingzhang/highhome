@@ -1,0 +1,177 @@
+
+<div role="menubar" class="navbar navbar-fixed-top navbar-inverse" style="left: 0px;">
+            <div class="navbar-inner shadow">
+                <div class="container">
+                    <a class="btn btn-navbar ">
+                        <span class="icon-bar">
+                        </span>
+                        <span class="icon-bar">
+                        </span>
+                        <span class="icon-bar">
+                        </span>
+                    </a>
+                    <div class="top-nav">
+                        <div class="primary-nav">
+                            <div class="brand">
+                                <a href="/" title="highhome" class="highhome-logo" style="padding:0 0 0 30px;">
+                                    <div class="nd-logo">
+                                    	
+                                        <span style=" font-weight:800; font-size:26px;">
+                                            Highhome
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+            <!--search box-->                
+          <form id='search_form' class='navbar-search' action="/">
+          <% if (locals.keyword) { %>
+                 <input type='text' id='q' name='q' class='search-query span3' value='<%= locals.keyword%>' />
+                <% } else { %>
+                <input type='text' id='q' name='q' class='search-query span3'  placeholder="Search"  value='' />
+           <% } %>
+             	<button tabindex="-1" class="search-button btn-link" type="submit">
+                    <b class="glyphicon-search">
+                    </b>
+                </button>
+          </form>
+                        </div>
+                        <!--邀请-->   
+                        <div class="secondary-nav">
+                            <ul class="nav nav-pills pull-right">
+                                <!--<li class="nav-invite dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);">
+                                        <i class="glyphicon-leaf">
+                                        </i>
+                                        <span>
+                                            邀请
+                                        </span>
+                                        <b class="caret">
+                                        </b>
+                                    </a>
+                                    <ul class="dropdown-menu visual-vert">
+                                        <li>
+                                            <a class="visual-vert-row" href=""
+                                            title="Email">
+                                                <div class="visual-vert-icon visual-vert-email">
+                                                </div>
+                                                <div class="visual-vert-label">
+                                                    Email
+                                                </div>
+                                                <div class="visual-vert-desc">
+                                                    Our easiest method
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="visual-vert-row" href=""
+                                            title="Postcards">
+                                                <div class="visual-vert-icon visual-vert-postcards">
+                                                </div>
+                                                <div class="visual-vert-label">
+                                                    QQ
+                                                </div>
+                                                <div class="visual-vert-desc">
+                                                    We'll mail for free
+                                                </div>
+                                            </a>
+                                        </li>
+                        </ul>
+                                </li>-->
+                                <!--当前用户存在是显示个人管理页面-->         
+                                   
+                                <%if(locals.current_user){%>
+                                <li class="nav-user-menu dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" >
+                                        <img class="avatar" src="<%=locals.current_user.avatar_url%>" alt="<%=locals.current_user.name%>">
+                                        <span>
+                                            管理
+                                        </span>
+                                        <b class="caret">
+                                        </b>
+                                    </a>
+                                    
+                                    <ul class="dropdown-menu" style="width:50px;">
+                                        <li>
+                                            <a href="/user/<%=locals.current_user.name%>">
+                                                个人信息
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/setting">
+                                                设置
+                                            </a>
+                                        </li>
+                                        <li class="divider">
+                                        </li>
+                                        <li>
+                                            <a href="/change_password">
+                                                密码修改
+                                            </a>
+                                        </li>
+                                        
+                                        <li>
+                                            <a href="/help">
+                                                帮助
+                                            </a>
+                                        </li>
+                                        
+                                        <li class="divider">
+                                        </li>
+                                        <li>
+                                            <a href="/signout">
+                                                退出
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <%}else{%>
+                                 <!--<li class="nav-user-menu dropdown">
+                                <a class="dropdown-toggle sign"  href="/signin" >
+                                        <span>
+                                            登陆
+                                        </span>
+                                     
+                                    </a>
+                                   </li>
+                                    <li class="nav-user-menu dropdown">
+                                    <a class="dropdown-toggle sign"  href="/signup" >
+                                        <span>
+                                            注册
+                                        </span>
+                                    </a>
+                                    </li>-->
+                                		
+                                <%}%>
+                                
+                            </ul>
+                        </div>
+                        <!-- /.secondary-nav -->
+                    </div>
+                    <!-- /.top-nav and .collapse -->
+                </div>
+                <!-- /.container -->
+            </div>
+            <!-- /.navbar-inner -->
+        </div>
+        <%if(!locals.current_user){%>
+        <!--在用户未登陆的时候显示提示内容，-->
+        <div class="navbar-promo navbar-promo-default">
+    <div class="container">
+
+    <div class="pull-left">
+      <strong>Welcome to Highhome!</strong>
+      enjoy yourself with neighbour.<br>
+      在highhome你可以认识你的邻居，获取和家园最新的资讯。
+    </div>
+    
+    <a class="btn btn-inverse pull-right" href="/signup">
+      注册
+    </a>
+    
+    <a class="btn btn-inverse pull-right" href="/signin">
+      登陆
+    </a>
+    
+    </div>
+  </div>
+  		<%}%>

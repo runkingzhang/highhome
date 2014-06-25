@@ -1,0 +1,109 @@
+<div class="container">
+            <div class="row">
+
+<%- partial('sidebar') %>
+
+<div role="main" class="span single-column ">
+	
+    <!--这边是收件箱信箱的头部-->
+    <div class="message_view_title ">
+        <div class="header">
+            <h4 class="section-title">
+                收件箱
+                <div class="actions">
+                    <a  class="message_view_link" href="#">
+                       已读消息
+                    </a>
+                </div>
+            </h4>
+        </div>
+    </div>
+    
+     <!--这边是已读消息的头部-->
+    <div class="message_view_title hide" >
+        <div class="header">
+            <h4 class="section-title">
+                已读消息
+                <div class="actions">
+                    <a  class="message_view_link">
+                        收件箱
+                    </a>
+                </div>
+            </h4>
+        </div>
+    </div>
+    
+    
+    <ul  class="unstyled list message_list">
+        <% if (locals.hasnot_read_messages && hasnot_read_messages.length > 0) { %>
+		<%- partial('message/message', { collection: hasnot_read_messages, as: 'message' }) %>
+		<div class='cell' style="margin:20px  0 0 0;">
+			<button id='mark_all_messages_btn' class='btn'>标记所有消息为已读</button>
+		</div>
+		<% } else { %>
+		<li data-message-display="no-inbox-messages" >
+             你没有最新消息，不要宅在家里，出门和邻居去互动吧。
+        </li>
+		<% } %>
+    </ul>
+    
+    <ul  class="unstyled list message_list hide">  <% if (locals.has_read_messages && has_read_messages.length > 0) { %>
+	   <%- partial('message/message', { collection: has_read_messages, as: 'message' }) %>
+		<% } else { %>
+		<li data-message-display="no-inbox-messages" >
+             你没有已读消息，不要宅在家里，出门和邻居去互动吧。
+        </li>
+		<% } %>
+    </ul>
+    
+    
+    <!-- / message list -->
+</div>
+
+
+<script type='text/javascript'>
+
+$(document).ready(function() {
+	$('.mark_read_btn').click(function() {
+		var $me = $(this);
+		var message_id = $me.parent().attr('message_id');
+		var data = {
+			message_id: message_id,
+			_csrf: '<%- csrf %>'
+		};
+		$.post('/messages/mark_read', data, function(data) {
+			if (data.status === 'success') {
+				$me.parent().toggleClass('message');
+				$me.parent().find('.unread').each(function(index) {
+					$($me.parent().find('.unread')[index]).removeClass('unread');
+					var count = parseInt($('.messages_count').html()) - 1;
+					$('.messages_count').html(count);
+				})
+			}
+		}, 'json');
+	});
+	
+	$('#mark_all_messages_btn').click(function() {
+		var $parent = $(this).parent().parent();
+		$.post('/messages/mark_all_read', { _csrf: '<%- csrf %>' }, function(data) {
+			if (data.status === 'success') {
+				$parent.find('.message').each(function() {
+					$me = $(this);
+					$me.toggleClass('message');
+					$('.unread-inbox-message-count ').html(0);
+				});
+			}
+		}, 'json');
+	});
+	/*收件箱和已经信箱的切换*/
+	
+	$(".message_view_link").click(function(){
+ 		 $(".message_view_title").toggle();
+		 $(".message_list").toggle();
+    });
+	
+  
+});
+</script>
+</div>
+        </div>

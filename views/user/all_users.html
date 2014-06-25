@@ -1,0 +1,53 @@
+ <li data-class="linked-name" >
+               <img class="avatar"  src="<%= user.avatar_url %>" title="<%= user.name %>" />
+                <span class="message">
+                    <a href="http://demo.trynextdoor.com/profile/756/" data-class="linked-name"
+                    data-id="756">
+                        <span class="name">
+                            <%= user.name %>
+                        </span>
+                    </a>
+                    
+                    <span class="hide" data-toggle="mute_icon" data-target="756">
+                        <span class="mute-label" data-rel="tooltip" title="" data-original-title="Adam is on mute">
+                            <i class="glyphicon-volume-off">
+                            </i>
+                        </span>
+                    </span>
+                </span>
+                
+                <span class="message-meta">
+                    <span class="location">
+                        和家园，<% if (user.village==1) { %>
+					御园
+				<% } else if (user.village==2) { %>
+				 紫园
+                 <% } else if (user.village==3) { %>
+				  翰园
+                 <% } else if (user.village==4) { %>
+				  景园
+                  <% } else if (user.village==5) { %>
+				  琉园
+                  <% } else if (user.village==6) { %>
+				  懿园
+				<% } %>
+               ，<%= user.building %>幢，
+               <%= user.atunit %>单元
+                    </span>
+                    
+                    
+                </span>
+                <span class="actions">
+                	<% if (locals.current_user && current_user._id != user._id) { %>
+				<% if (!locals.relation) { %>
+				<button class='btn btn-success btn-mini' action='follow'>加入关注</button>
+				<% } else { %>
+				<button class='btn btn-mini' action='un_follow'>取消关注</button>
+				<% } %>
+			<% }else{%>
+            		<a class='btn btn-mini' href="/setting">编辑个人信息</a>
+            <% } %>
+            
+                </span>
+            </li>
+            

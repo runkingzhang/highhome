@@ -1,0 +1,76 @@
+<div class="container">
+            <div class="row">
+<%- partial('sidebar') %>
+
+
+<div role="main" class="span single-column ">
+    <div class="header">
+        <h4 class="section-title">
+            邻居
+            
+        </h4>
+        <p class="section-description">
+            Highhome:共建和谐家园， 共享阖家团圆。
+        </p>
+    </div>
+    
+    <ul class="nav nav-tabs section-tabs">
+        <li class="">
+            <a href="/users/top100">
+                所有邻居
+            </a>
+        </li>
+        
+        <li class="">
+            <a href="/users/atunit/<%= locals.current_user.name %>">
+               同一单元
+            </a>
+        </li>
+         <li class="">
+            <a href="/users/building/<%= locals.current_user.name %>">
+               同一幢
+            </a>
+        </li>
+        <li class="">
+            <a href="/users/village/<%= locals.current_user.name %>">
+               同一幢
+            </a>
+        </li>
+        
+        
+        <li class="">
+            <a href="/users/my_neighbour/<%=locals.current_user.name%>">
+                我的邻居
+            </a>
+        </li>
+        
+        <li class="active">
+            <a href="/user/<%= locals.current_user.name %>/follower">
+                我的关注
+            </a>
+        </li>
+        <li class="">
+            <a href="/user/<%= locals.current_user.name %>/following">
+                我的粉丝
+            </a>
+        </li>
+        
+   	  </ul>
+    
+ 
+    
+    <div id="directory_column">
+    	<% if(locals.users && users.length > 0){ %>
+			<ul id="member-list" class="unstyled list" style="border:0;">
+				<%- partial('user/top100_user',{collection:users,as:'user'}) %>			
+			</ul>
+			<% }else{ %>
+			<p>还没有用户</p>	
+			<% } %>
+    </div>
+    
+</div>
+
+
+</div>
+</div>

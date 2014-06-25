@@ -1,0 +1,43 @@
+ 	<!-- meta -->
+    <meta charset="utf-8" />
+    <meta name='description' content='<%= config.description %>'>
+    <%
+    var headers = config.site_headers || [];
+    for (var i = 0, l = headers.length; i < l; i++) {
+    %>
+    <%- headers[i] %>
+    <% } %>
+
+    <!-- style -->
+    <%- Loader('/public/stylesheets/index.min.css')
+      .css('/public/stylesheets/bootstrap.css')
+      .css('/public/stylesheets/common.css')
+      .css('/public/stylesheets/style.css')
+      .css('/public/libs/code-prettify/prettify.css')
+      .done(assets, config.site_static_host, config.mini_assets)
+    %>
+   
+
+    <% if (locals.extra_style) { %>
+    <style type="text/css">
+      <%- locals.extra_style %>
+    </style>
+    <% } %>
+    <%- Loader('/public/index.min.js')
+      .js('/public/libs/code-prettify/prettify.js')
+      .js('/public/libs/jquery/jquery.js')
+      .js('/public/libs/bootstrap/js/bootstrap.js')
+      .js('/public/javascripts/main.js')
+      .done(assets, config.site_static_host, config.mini_assets)
+    %>
+    <% if (config.site_enable_search_preview) { %>
+    <script>
+      var __google_search_domain = '<%= config.site_google_search_domain || "" %>';
+    </script>
+    <script src='/public/javascripts/google_search_preview.js'></script>
+    <% } %>
+    <% if (locals.topic) { %>
+    <title><%= topic.title %> - <%= config.name %></title>
+    <% } else { %>
+    <title><%= config.description %></title>
+    <% } %>

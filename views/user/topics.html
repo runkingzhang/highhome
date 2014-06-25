@@ -1,0 +1,126 @@
+
+<div class="container">
+            <div class="row">
+            <%- partial('sidebar') %>
+
+<div role="main" class="span single-column ">
+                    <div class="header">
+                        <a class="section-map" href="/user/<%=user.name%>">
+                            <img class="map" src="<%= user.avatar_url %>"  title="<%= user.name %>"
+           					 alt="<%= user.name %>">
+                        </a>
+                        <h4 class="section-title">
+                        	<%if(!user.nickname){%>
+                            		<%= user.name %>
+                            <%}else{%>
+                            		<%= user.nickname %>
+                            <%}%>
+                            
+                            <span class="hidden-phone">
+                                个人主页
+                            </span>
+                            <!--<span class="stat">
+                            		  <%if(user.signature){%>
+                               		<%=user.signature%>
+                               <%}%>
+                            </span>-->
+                        </h4>
+                        <div class="section-stats">
+                            <span class="stat">
+                            	
+                               <%if(user.profile){%>
+                               		<%=user.profile%>
+                               <%}else{%>
+                               		欢迎来 <%=user.name%>到的家。
+                               <%}%>
+                            </span>
+                            
+                        </div>
+                    </div>
+                    
+                    <ul class="nav nav-tabs section-tabs " id="myTab">
+                    	<!--这边是tab 可以变化对应的信息-->
+                        <li class="active" >
+                            <a  href="/user/<%= user.name %>/topics" >
+                                我发布的
+                            </a>
+                        </li>
+                        <li class="">
+                            <a    href="/user/<%= user.name %>/replies" >
+                                我参与的
+                            </a>
+                        </li>
+                        
+                        <li class="">
+                            <a    href="/user/<%= user.name %>/collections" >
+                                我收集的
+                            </a>
+                        </li>
+                        
+                    </ul>
+                    
+                    <div class="tab-content">
+                       <!--我发布的-->
+                      <div class="tab-pane active " id="home">
+                      <% if(locals.topics && topics.length > 0 ){ %>
+                    <%- partial('topic/list', {topics:topics,pages:pages,current_pages:current_page,base:'/user/'+user.name+'/topics'}) %>
+                    <% }else{ %>
+                    <div class='inner'>
+                        <p>无话题</p>
+                    </div>
+        
+                      <% } %>
+                                  
+                     </div>
+                     
+                     <!--我参与的-->
+                      <div class="tab-pane" id="profile">
+                      
+                     </div>
+                      
+                    </div>
+
+                   
+                    
+                   
+                    
+                </div>
+ </div>
+ </div>
+<% if (locals.current_user) { %>
+<script>
+	$(document).ready(function(){
+		$('#follow_btn').click(function(){
+			var $me = $(this);
+			var action = $me.attr('action');
+			$.post('/user/'+action,{follow_id: '<%= user._id %>'},function(data){
+				if(data.status == 'success'){
+					if(action == 'follow'){
+						$me.html('取消关注');
+						$me.attr('action','un_follow');
+					}else{
+						$me.html('加入关注');
+						$me.attr('action','follow');
+					}
+					$me.toggleClass('btn-success');	
+				}	
+			},'json');	
+		});
+		$('#set_star_btn').click(function(){
+			var $me = $(this);
+			var action = $me.attr('action');
+			$.post('/user/'+action,{user_id: '<%= user._id %>'},function(data){
+				if(data.status == 'success'){
+					if(action == 'set_star'){
+						$me.html('取消达人');
+						$me.attr('action','cancel_star');
+					}else{
+						$me.html('设为达人');
+						$me.attr('action','set_star');
+					}
+				}	
+			},'json');	
+		});
+	});
+</script>
+<% } %>

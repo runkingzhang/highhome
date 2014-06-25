@@ -1,0 +1,192 @@
+<div class="container">
+            <div class="row">
+            
+			<%- partial('sidebar') %>
+			
+<div role="main" class="span single-column ">
+                    <div class="header">
+                        <a class="section-map  " href="/">
+                            <img class="map"  src="../public/images/hejiayuan.jpg" alt="Neighborhood map">
+                        </a>
+                        <h4 class="section-title">
+                           HighHome:和家园网络社区。
+                        </h4>
+                        
+                        <div class="section-stats">
+                                Highhome 是和家园网络社区，欢迎加入Highhome.<br/>
+                                你可以在这里获取和家园的相关资讯，和左邻右舍交流，讨论生活问题，参加活动，
+                                结实身边有趣的人。<br/>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                    <div id="postbox">
+    		 <% if(locals.edit_error){ %>
+     		 <div id="postbox_error" class="error-banner ">
+                            <%= edit_error %>
+       		</div>
+            <% } %>
+      		<% if(locals.error){ %>
+      <div id="postbox_error" class="error-banner ">
+                            <%= error %>
+       </div>
+      <% }else{ %>
+      <div id="postbox_fake">
+                            <div class="input-textarea-fake input-block-level ">
+                                <span data-class="placeholder" class="placeholder">
+                                    点击这边给邻居们发布一条状态吧。
+                                </span>
+                            </div>
+        </div>
+                        
+       <% if (locals.action && action === 'edit') { %>
+      <% } else { %>
+      
+      <!--编辑器内容-->
+       <form id='create_topic_form'  class="collapse in hide" autocomplete="off" enctype="multipart/form-data" action='/topic/create' method='post'>
+      <% } %>
+      		<fieldset>
+                            <ul role="menubar"  id="postbox_actions" class="nav nav-pills postbox-actions">
+                                <li class="active">
+                                    <a href="javascript:void(0);" class="active">
+                                        <i class="icon-nextdoorv2 icon-m-message">
+                                        </i>
+                                        信息
+                                    </a>
+                                </li>
+                            </ul>
+                          
+                            <div id="story_error" class="error hide">
+                            </div>
+                            
+                            <div class="control-group" data-class="control-group">
+                                <div class="controls" data-class="controls">
+                                     <input   id='title' name='title' autocomplete="off" class="input-block-level" type="text" placeholder="请在此输入标题，字数控制在10到100个之间"  value="<%= locals.title || '' %>">
+                                    <textarea  id='wmd-input ' name='t_content' autocomplete="off" class="input-block-level"   rows="2" placeholder="在这里输入话题内容" style="height:150px; overflow: auto">
+<%= locals.content || '' %></textarea>
+								
+                                    <input class="hide" id='t_tags' name="t_tags" ></input>
+                                    
+         						    <input type='hidden' name='_csrf' value='<%= csrf %>' />
+                                    
+          		<!--					<div id="directory_column">
+    	<% if(locals.users && users.length > 0){ %>
+			<ul id="member-list" class="unstyled list">
+				<%- partial('user/my_neighbour_user',{collection:users,as:'user'}) %>	
+			</ul>
+			<% }else{ %>
+			<p>还没有用户</p>	
+			<% } %>
+    </div>-->
+    
+    								<div id="menu_category_toggle" class="input-text-fake input-block-level menu-toggle input-last"
+                                    data-toggle="collapse" data-target="#menu_category" data-state="closed" style="position:relative">
+                                        <span id="menu_category_placeholder" data-class="placeholder" class="placeholder">
+                                            <i class="icon-nextdoorv2 icon-m-tag">
+                                            </i>
+                                            选择标签
+                                        </span>
+                                        <span id="menu_category_selected" data-class="menu-selected" class="menu-selected">
+                                        </span>
+                                        <b id="category_caret" class="glyphicon-chevron-down" style="position:absolute;right:10px;top:10px;">
+                                        </b>
+                                        <div id="menu_category" class="menu-options collapse" style="background:#FFF; padding:0 10px;">
+                                        <div  style="height:5px;"></div>
+                                    		<%- partial('tag/tags',{collection:tags,as:'tag'}) %>	
+                                    </div>
+                                    
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="actions" id="photo_upload_actions">
+                                <div id="file_upload_error" class="error hide ">
+                                
+                                </div>
+                                <div class="upload-group" data-class="upload-group">
+                                    <div class="upload-btn">
+                                        <a id="add_photo" class="btn btn-small" href="javascript:void(0);" title="Upload a photo or attachment">
+                                            <i class="glyphicon-camera">
+                                            </i>
+                                            +
+                                        </a>
+                                        
+                                        <input id="photo_id" class="file" type="file" name="photo">
+                                    </div>
+                                    <span id="file-upload-name">
+                                    </span>
+                                    <a href="javascript:void(0);" class="hide" id="file-upload-remove">
+                                        <i class="glyphicon-remove">
+                                        </i>
+                                    </a>
+                                </div>
+                                
+                                <button id='submit_btn' type="submit" class="btn btn-primary">
+                                    提交
+                                </button>
+                                
+                            </div>
+                            </fieldset>
+                        </form>
+                                         
+    <% } %>
+    
+                        <!--这边是把这个内容隐藏掉了，只要给postbox_real增加对应的高度，写路况就会继续写入内容信息。
+                        postbox_real的原本高度是320，但是这边的内容可以随着下面的操作发生变化。
+                        -->
+                        
+                        <div id="postbox_spinner" class="hide">
+                            <div class="spinner">
+                                <img src="./indexc_files/32-ajax-loader-f4f3f3.gif" alt="Loading...">
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <ul class="nav nav-tabs section-tabs">
+                        <li class="active">
+                            <a data-toggle="nearby-content-filter" data-value="nearby-off" href="javascript:void(0);">
+                                和家园
+                            </a>
+                        </li>
+                    </ul>
+                  
+                    <% if (locals.topics && topics.length > 0) { %>
+      <%- partial('topic/list', {
+        topics: topics,
+        pages: pages,
+        current_pages: current_page,
+        base: keyword ? ('/?q=' + keyword) : '/'
+      }) %>
+      <% } else { %>
+      <div class='inner'>
+        <p>无话题</p>
+      </div>
+      <% } %>
+      
+                  
+                </div>
+</div>
+        </div>
+        
+<script>
+
+/*
+*点击回复框显示
+*。
+*/
+$(function(){ 
+		$("#postbox_fake").click(function(){
+				 $(this).addClass("hide");
+				 $("#create_topic_form").removeClass("hide").addClass("show");
+				 $("#title").focus();
+			});
+			
+		
+}); 
+</script>

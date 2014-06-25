@@ -1,0 +1,1 @@
+$(function(){$('[data-action="collapse-on-load"]').each(function(index,element){$(element).delay(2e3).slideUp()}),nd.privateMessage.populateCount()});

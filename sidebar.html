@@ -1,0 +1,134 @@
+<div id="navigation-side" role="navigation" class="span navigation-column overthrow">
+                    <form class="navbar-search hidden-desktop" action="http://demo.trynextdoor.com/search/">
+                        <input type="text" name="query" class="search-query" placeholder="Search">
+                        <button tabindex="-1" class="search-button btn-link" type="submit">
+                            <b class="glyphicon-search">
+                            </b>
+                        </button>
+                    </form>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active">
+                            <a href="/">
+                                <i class="icon-nextdoorv2 icon-m-house">
+                                </i>
+                                Home
+                            </a>
+                        </li>
+                        <%if(locals.current_user){%>
+                        <li class="">
+                            <a href="/my/messages">
+                                <i class="icon-nextdoorv2 icon-m-mail">
+                                </i>
+                                收件箱
+                                <% if(locals.current_user.messages_count >0 ){%>
+                                 <small class="label label-badge unread-inbox-message-count ">
+                                   <%= locals.current_user.messages_count %>
+                                </small>
+                                <%}%>
+                            </a>
+                        </li>
+                        <%}%>
+                        <%if(locals.current_user){%>
+                        <!--在邻居里面可以查看有多少人入住和家园，御园有多少人加入了，11幢有多少人加入了的。我的邻居，可以看到自己的上下左右的信息-->
+                        <li class="">
+                            <a href="/users/top100">
+                                <i class="icon-nextdoorv2 icon-m-directory">
+                                </i>
+                               	左邻右舍
+                            </a>
+                        </li>
+                        <%}%>
+                        <%if(locals.current_user){%>
+                        <li class=" hidden-phone">
+                            <a href="/user/<%=locals.current_user.name%>/topics" style="font-family:'微软雅黑'" >
+                                <i class="icon-nextdoorv2 icon-m-map">
+                                </i>
+                                我家
+                            </a>
+                        </li>
+                    </ul>
+                    <%}%>
+                    <h6>
+                        <i class="icon-nextdoorv2 icon-m-pin">
+                        </i>
+                        Hourse 
+                    </h6>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li data-nav-item="neighborhood_feed" class="">
+                            <a href="/user/hejiayuan/topics">
+                                 和家园
+                            </a>
+                        </li>
+                        <li data-nav-item="nearby_neighborhoods" class="">
+                            <a href="/user/helushoulou/topics">
+                                和庐
+                            </a>
+                        </li>
+                        <li data-nav-item="nearby_neighborhoods" class="">
+                            <a href="/user/hejiayuanxiaoxue/topics">
+                                和家园小学
+                            </a>
+                        </li>
+                        
+                    </ul>
+                    
+                    <h6>
+                        <i class="icon-nextdoorv2 icon-m-tag">
+                        </i>
+                        标签
+                    </h6>
+                    
+                    
+                    <ul class="nav nav-pills nav-stacked">
+                        <li data-nav-item="classifieds" class="">
+                            <a href="tag/装修">
+                                装修
+                            </a>
+                        </li>
+                        <li data-nav-item="crime-and-safety" class="">
+                            <a href="tag/育儿">
+                                育儿
+                            </a>
+                        </li>
+                        <li data-nav-item="documents" class="">
+                            <a href="tag/投资&理财">
+                                投资&理财
+                            </a>
+                        </li>
+                        <li data-nav-item="free" class="">
+                            <a href="tag/情感">
+                                情感
+                            </a>
+                        </li>
+                        <li data-nav-item="general" class="">
+                            <a href="tag/转让">
+                                转让
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div class="footer">
+                        <p>
+                            <span class="copyright">
+                                © Highhome 2014
+                            </span>
+                            <span class="hidden-phone">
+                                <a href="http://demo.trynextdoor.com/about_us/">
+                                    关于
+                                </a>
+                                <a href="http://blog.nextdoor.com/">
+                                    博客
+                                </a>
+                                <a href="http://demo.trynextdoor.com/neighborhood_guidelines/#guidelines">
+                                    帮助
+                                </a>
+                                <a href="http://demo.trynextdoor.com/help/">
+                                    赞助
+                                </a>
+                                <a href="http://demo.trynextdoor.com/jobs/">
+                                    联系
+                                </a>
+                            </span>
+                        </p>
+                    </div>
+                </div>
